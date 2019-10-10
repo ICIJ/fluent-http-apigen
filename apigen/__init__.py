@@ -2,8 +2,8 @@ import re
 import sys
 
 REGEXPS = {
-    r'@Prefix\("([a-z/]+)".*': 'context[url_prefix]',
-    r'@(\w+)\("([a-z/:]+)".*': r'# \1 {url_prefix}\2'
+    r'@Prefix\("([a-zA-Z/]+)".*': 'context[url_prefix]',
+    r'@(\w+)\("([a-zA-Z/:\?=]+)".*': r'# \1 {url_prefix}\2'
 }
 
 CONTEXT_REGEXP = re.compile(r'context\[([a-z_]+)\]')
@@ -24,6 +24,7 @@ def handle_line(rawline, context, regexp_dict):
 
 
 def generate_doc_for_file(filepath):
+    print(filepath)
     with open(filepath, mode='r') as file:
         doc_lines = []
         context = dict()

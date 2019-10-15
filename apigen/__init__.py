@@ -1,4 +1,5 @@
 import re
+import subprocess
 import sys
 from collections import namedtuple
 
@@ -26,6 +27,13 @@ def handle_line(rawline, context, line_handlers):
             context['javadoc_lines'].append(javadoc_line.replace('@param', '**Parameter**'))
         elif javadoc_line.startswith('@return'):
             context['javadoc_lines'].append(javadoc_line.replace('@return', '**Return**'))
+        elif javadoc_line.startswith('$('):
+            command = javadoc_line.replace('$', '').strip('()')
+            cp = subprocess.run(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            context['javadoc_lines'].append('```')
+            context['javadoc_lines'].append(command)
+            context['javadoc_lines'] += cp.stdout.strip(b'\n').decode('utf-8').split('\n')
+            context['javadoc_lines'].append('```')
         elif javadoc_line.endswith('/'):
             context['javadoc'] = 'false'
         else:

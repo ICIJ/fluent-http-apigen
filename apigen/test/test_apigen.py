@@ -36,9 +36,9 @@ class TestApigen(TestCase):
         self.assertEqual({'javadoc': 'false', 'url_prefix': 'prefix'}, context)
 
     def test_handle_line_javadoc_begin(self):
-       context=dict()
-       self.assertEqual([], handle_line('/**', context, list()))
-       self.assertEqual({'javadoc': 'true', 'javadoc_lines': []}, context)
+        context = dict()
+        self.assertEqual([], handle_line('/**', context, list()))
+        self.assertEqual({'javadoc': 'true', 'javadoc_lines': []}, context)
 
     def test_handle_line_javadoc_end(self):
         context = {'javadoc': 'true'}

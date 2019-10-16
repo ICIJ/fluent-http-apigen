@@ -60,7 +60,6 @@ def handle_line(rawline, context, line_handlers):
 
 
 def generate_doc_for_file(filepath):
-    print(filepath)
     with open(filepath, mode='r') as file:
         doc_lines = []
         context = {'javadoc': 'false'}
@@ -70,6 +69,7 @@ def generate_doc_for_file(filepath):
 
 
 def main():
+    print('Generated with https://github.com/ICIJ/fluent-http-apigen')
     for filepath in sys.argv[1:]:
         for line in generate_doc_for_file(filepath):
             print(line)

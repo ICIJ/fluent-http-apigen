@@ -53,12 +53,12 @@ class TestApigen(TestCase):
     def test_handle_line_javadoc_parameter(self):
         context = {'javadoc': 'true', 'javadoc_lines': []}
         self.assertEqual([], handle_line('* @param name parameter name', context, list()))
-        self.assertEqual({'javadoc': 'true', 'javadoc_lines': ['**Parameter** name parameter name']}, context)
+        self.assertEqual({'javadoc': 'true', 'javadoc_lines': ['* **Parameter** name parameter name']}, context)
 
     def test_handle_line_javadoc_return(self):
         context = {'javadoc': 'true', 'javadoc_lines': []}
         self.assertEqual([], handle_line('* @return object returned', context, list()))
-        self.assertEqual({'javadoc': 'true', 'javadoc_lines': ['**Return** object returned']}, context)
+        self.assertEqual({'javadoc': 'true', 'javadoc_lines': ['* **Return** object returned']}, context)
 
     def test_handle_javadoc_line_with_command_line(self):
         context = {'javadoc': 'true', 'javadoc_lines': []}

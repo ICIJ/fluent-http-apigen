@@ -24,9 +24,9 @@ def handle_line(rawline, context, line_handlers):
     if context['javadoc'] == 'true':
         javadoc_line = line.replace('*', '').strip()
         if javadoc_line.startswith('@param'):
-            context['javadoc_lines'].append(javadoc_line.replace('@param', '**Parameter**'))
+            context['javadoc_lines'].append(javadoc_line.replace('@param', '* **Parameter**'))
         elif javadoc_line.startswith('@return'):
-            context['javadoc_lines'].append(javadoc_line.replace('@return', '**Return**'))
+            context['javadoc_lines'].append(javadoc_line.replace('@return', '* **Return**'))
         elif javadoc_line.startswith('$('):
             command = javadoc_line.replace('$', '').strip('()')
             cp = subprocess.run(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)

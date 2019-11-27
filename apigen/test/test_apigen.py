@@ -27,7 +27,7 @@ class TestApigen(TestCase):
 
     def test_handle_line_save_into_context(self):
         context = dict()
-        self.assertEqual([], handle_line('@Prefix("prefix")', context, LINE_HANDLERS))
+        self.assertEqual(['# <a name="prefix"></a>prefix'], handle_line('@Prefix("prefix")', context, LINE_HANDLERS))
         self.assertEqual({'url_prefix': 'prefix'}, context)
 
     def test_handle_line_javadoc_begin(self):
@@ -72,4 +72,4 @@ class TestApigen(TestCase):
 
     def test_generate_toc_line(self):
         context = {'url_prefix': '/prefix'}
-        self.assertEqual(["- [Post /prefix/my/url](#post__prefix_my_url)"], handle_line('@Post("/my/url")', context, TOC_LINE_HANDLERS))
+        self.assertEqual(["  - [Post /prefix/my/url](#post__prefix_my_url)"], handle_line('@Post("/my/url")', context, TOC_LINE_HANDLERS))

@@ -76,7 +76,7 @@ class TocEndPointLineHandler(EndPointLineHandler):
     def add_anchor(self, line):
         [prefix, method, url] = line.split()
         anchor = generate_anchor(method, url)
-        return '%s [%s %s](#%s)' % (prefix, method, url, anchor)
+        return '  %s [%s %s](#%s)' % (prefix, method, url, anchor)
 
 
 def generate_anchor(method, url):
@@ -86,11 +86,13 @@ def generate_anchor(method, url):
 LINE_HANDLERS = [
     JavadocLineHandler(),
     ContextLineHandler(r'@Prefix\("([a-zA-Z/]+)".*', 'url_prefix'),
+    DefaultLineHandler(r'@Prefix\("([a-zA-Z/]+)".*', r'# <a name="\1"></a>\1'),
     EndPointLineHandler(r'@(\w+)\("([a-zA-Z/:\?=]+)".*', r'## \1 {url_prefix}\2'),
 ]
 
 TOC_LINE_HANDLERS = [
     ContextLineHandler(r'@Prefix\("([a-zA-Z/]+)".*', 'url_prefix'),
+    DefaultLineHandler(r'@Prefix\("([a-zA-Z/]+)".*', r'- [\1](#\1)'),
     TocEndPointLineHandler(r'@(\w+)\("([a-zA-Z/:\?=]+)".*', r'- \1 {url_prefix}\2'),
 ]
 
@@ -115,10 +117,10 @@ def generate_doc_for_file(filepath, handlers):
 
 def main():
     print('Generated with https://github.com/ICIJ/fluent-http-apigen')
+    print('# Table of Content')
     for filepath in sys.argv[1:]:
         for line in generate_doc_for_file(filepath, TOC_LINE_HANDLERS):
             print(line)
-    print('\n')
     print('\n')
     for filepath in sys.argv[1:]:
         for line in generate_doc_for_file(filepath, LINE_HANDLERS):

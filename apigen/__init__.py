@@ -87,13 +87,13 @@ LINE_HANDLERS = [
     JavadocLineHandler(),
     ContextLineHandler(r'@Prefix\("([a-zA-Z/]+)".*', 'url_prefix'),
     DefaultLineHandler(r'@Prefix\("([a-zA-Z/]+)".*', r'# <a name="\1"></a>\1'),
-    EndPointLineHandler(r'@(\w+)\("([a-zA-Z/:\?=]+)".*', r'## \1 {url_prefix}\2'),
+    EndPointLineHandler(r'@(\w+)\("?([a-zA-Z/:\?=]*)"?.*', r'## \1 {url_prefix}\2'),
 ]
 
 TOC_LINE_HANDLERS = [
     ContextLineHandler(r'@Prefix\("([a-zA-Z/]+)".*', 'url_prefix'),
     DefaultLineHandler(r'@Prefix\("([a-zA-Z/]+)".*', r'- [\1](#\1)'),
-    TocEndPointLineHandler(r'@(\w+)\("([a-zA-Z/:\?=]+)".*', r'- \1 {url_prefix}\2'),
+    TocEndPointLineHandler(r'@(\w+)\("?([a-zA-Z/:\?=]*)"?.*', r'- \1 {url_prefix}\2'),
 ]
 
 

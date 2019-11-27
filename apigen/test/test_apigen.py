@@ -12,6 +12,10 @@ class TestApigen(TestCase):
         context = {'javadoc': 'false', 'url_prefix': 'prefix'}
         self.assertEqual(['## <a name="post_prefix_my_url"></a> Post prefix/my/url'], handle_line('@Post("/my/url")', context, LINE_HANDLERS))
 
+    def test_handle_http_method_with_empty_string(self):
+        context = {'url_prefix': 'prefix'}
+        self.assertEqual(['## <a name="post_prefix"></a> Post prefix'], handle_line('@Post()', context, LINE_HANDLERS))
+
     def test_handle_http_method_with_javadoc_lines(self):
         context = {'javadoc': 'false','javadoc_lines': ['line 1', 'line 2'], 'url_prefix': ''}
         self.assertEqual(['## <a name="post__my_url"></a> Post /my/url', 'line 1', 'line 2'], handle_line('@Post("/my/url")', context, LINE_HANDLERS))
@@ -73,3 +77,7 @@ class TestApigen(TestCase):
     def test_generate_toc_line(self):
         context = {'url_prefix': '/prefix'}
         self.assertEqual(["  - [Post /prefix/my/url](#post__prefix_my_url)"], handle_line('@Post("/my/url")', context, TOC_LINE_HANDLERS))
+
+    def test_generate_toc_line_empty_string(self):
+        context = {'url_prefix': '/prefix'}
+        self.assertEqual(["  - [Post /prefix](#post__prefix)"], handle_line('@Post()', context, TOC_LINE_HANDLERS))

@@ -1,6 +1,11 @@
 About
 =====
 
+.. image:: https://circleci.com/gh/ICIJ/fluent-http-apigen.png?style=shield&circle-token=0d24d3ece1add1d2d22cccafd04c0b0024550a20
+   :alt: Circle CI
+   :target: https://circleci.com/gh/ICIJ/fluent-http-apigen
+
+
 This is a small tool to generate HTTP API documentation for https://github.com/CodeStory/fluent-http
 
 Develop

@@ -36,7 +36,7 @@ setup(name='datashare-preview',
       test_suite="nose.collector",
       entry_points={
         'console_scripts': [
-            'main = apigen:main',
+            'apigen = apigen:main',
         ],
       }
       )

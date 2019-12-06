@@ -8,6 +8,16 @@ About
 
 This is a small tool to generate HTTP API documentation for https://github.com/CodeStory/fluent-http
 
+It generates markdown and provides API documentation like https://github.com/ICIJ/datashare/wiki/Datashare-API
+
+Use
+---
+
+Install with pip ::
+
+   pip install fluent-http-apigen
+   apigen ...
+
 Develop
 -------
 
@@ -18,3 +28,8 @@ To develop, just run::
     python setup.py develop
     pip install -e ".[dev]"
     nosetests
+
+To release ::
+
+    bumpversion --commit --tag --current-version `python setup.py --version` [major|minor|patch] setup.py
+    python setup.py  sdist bdist_egg upload

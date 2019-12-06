@@ -14,7 +14,7 @@ dev_requires = [
     'bumpversion',
 ]
 
-setup(name='datashare-preview',
+setup(name='fluent-http-apigen',
       version='0.1.0',
       description="App generate HTTP documentation from fluent-http code",
       long_description=README,

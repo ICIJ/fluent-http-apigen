@@ -32,4 +32,5 @@ To develop, just run::
 To release ::
 
     bumpversion --commit --tag --current-version `python setup.py --version` [major|minor|patch] setup.py
+    git push origin master --tags
     python setup.py  sdist bdist_egg upload

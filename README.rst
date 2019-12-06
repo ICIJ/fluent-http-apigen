@@ -16,7 +16,7 @@ Use
 Install with pip ::
 
    pip install fluent-http-apigen
-   apigen ...
+   apigen <java_source_files>
 
 Develop
 -------

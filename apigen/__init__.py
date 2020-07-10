@@ -115,17 +115,21 @@ def generate_doc_for_file(filepath, handlers):
         return [l for l in doc_lines if l is not None]
 
 
-def main():
+def main(files):
     print('Generated with https://github.com/ICIJ/fluent-http-apigen')
     print('# Table of Content')
-    for filepath in sys.argv[1:]:
+    for filepath in files:
         for line in generate_doc_for_file(filepath, TOC_LINE_HANDLERS):
             print(line)
     print('\n')
-    for filepath in sys.argv[1:]:
+    for filepath in files:
         for line in generate_doc_for_file(filepath, LINE_HANDLERS):
             print(line)
 
 
+def entrypoint():
+    main(sys.argv[1:])
+
+
 if __name__ == "__main__":
-    main()
+    entrypoint()

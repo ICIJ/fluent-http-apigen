@@ -36,7 +36,7 @@ setup(name='fluent-http-apigen',
       test_suite="nose.collector",
       entry_points={
         'console_scripts': [
-            'apigen = apigen:main',
+            'apigen = apigen:entrypoint',
         ],
       }
       )

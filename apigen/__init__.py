@@ -37,6 +37,8 @@ class JavadocLineHandler(DefaultLineHandler):
                 context['javadoc_lines'].append(javadoc_line.replace('@param', '* **Parameter**'))
             elif javadoc_line.startswith('@return'):
                 context['javadoc_lines'].append(javadoc_line.replace('@return', '* **Return**'))
+            elif javadoc_line.startswith('@throws'):
+                context['javadoc_lines'].append(javadoc_line.replace('@throws', '* **Throws**'))
             elif javadoc_line.startswith('$('):
                 command = javadoc_line.replace('$', '').strip('()')
                 cp = subprocess.run(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)

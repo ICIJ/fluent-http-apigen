@@ -64,6 +64,11 @@ class TestApigen(TestCase):
         self.assertEqual([], handle_line('* @return object returned', context, LINE_HANDLERS))
         self.assertEqual({'javadoc': 'true', 'javadoc_lines': ['* **Return** object returned']}, context)
 
+    def test_handle_line_javadoc_throws(self):
+        context = {'javadoc': 'true', 'javadoc_lines': []}
+        self.assertEqual([], handle_line('* @throws MyException', context, LINE_HANDLERS))
+        self.assertEqual({'javadoc': 'true', 'javadoc_lines': ['* **Throws** MyException']}, context)
+
     def test_handle_javadoc_line_with_command_line(self):
         context = {'javadoc': 'true', 'javadoc_lines': []}
         self.assertEqual([], handle_line('* $(echo "hello world"| sed "s/ /\\n/")', context, LINE_HANDLERS))

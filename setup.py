@@ -15,7 +15,7 @@ dev_requires = [
 ]
 
 setup(name='fluent-http-apigen',
-      version='0.2.0',
+      version='0.3.0',
       description="App generate HTTP documentation from fluent-http code",
       long_description=README,
       classifiers=[
